@@ -1,0 +1,12 @@
+# 聞き役を2分ごとに動かす（書き込みから10分を過ぎて、遅くとも2分ほどで返す）。サーバーの /etc/systemd/system/ へ置き、enable --now する
+[Unit]
+Description=makeinu 聞き役（2分ごと）
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=2min
+AccuracySec=15s
+Unit=makeinu-kikiyaku.service
+
+[Install]
+WantedBy=timers.target

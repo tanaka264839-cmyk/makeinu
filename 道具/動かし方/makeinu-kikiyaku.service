@@ -1,0 +1,22 @@
+# AIの聞き役（聞き役.py）を1回動かす。makeinu-kikiyaku.timer が2分ごとに動かす。サーバーの /etc/systemd/system/ へ置く
+# 鍵は聞き役の分だけを置いた /etc/makeinu/kikiyaku.env（MAKEINU_SAKURA_AI_TOKEN＝負け犬だけの鍵。root だけ読める）。見回りの合言葉の /etc/makeinu/env は読ませない
+[Unit]
+Description=makeinu 聞き役（人の返事が無い板の書き込みに、AIが一度だけ返す）
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=makeinu
+Group=makeinu
+WorkingDirectory=/srv/makeinu/道具
+EnvironmentFile=/etc/makeinu/kikiyaku.env
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/usr/bin/python3 /srv/makeinu/道具/聞き役.py /srv/makeinu/記録/場.db
+TimeoutStartSec=10min
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ReadWritePaths=/srv/makeinu/記録
+MemoryMax=200M

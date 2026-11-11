@@ -1,0 +1,5 @@
+[
+  {"名前": "聞き役の返事_スマホ", "開く": "{場}/ita/okane", "測る": "(() => { const 名 = document.querySelector('.返事 .名乗り.聞き役'); const r = 名 ? 名.getBoundingClientRect() : null; return { 聞き役の名乗り: 名 ? 名.textContent : '', 名乗りの道: !!document.querySelector('.返事 a.名乗り'), 見える: !!r && r.width > 0 && r.right <= innerWidth, 横はみ出し: document.documentElement.scrollWidth > innerWidth }; })()", "期待": {"聞き役の名乗り": "聞き役（AI）", "名乗りの道": false, "見える": true, "横はみ出し": false}},
+  {"名前": "聞き役の返事_パソコン", "幅": 1280, "高さ": 800, "開く": "{場}/ita/okane", "測る": "(() => { const 名 = document.querySelector('.返事 .名乗り.聞き役'); const r = 名 ? 名.getBoundingClientRect() : null; return { 聞き役の名乗り: 名 ? 名.textContent : '', 見える: !!r && r.width > 0 && r.right <= innerWidth, 横はみ出し: document.documentElement.scrollWidth > innerWidth }; })()", "期待": {"聞き役の名乗り": "聞き役（AI）", "見える": true, "横はみ出し": false}},
+  {"名前": "聞き役の返事はさっきの話に出ない", "開く": "{場}/", "測る": "(() => { const 話 = [...document.querySelectorAll('.いまの話')]; return { 人の話: 話.some(e => e.textContent.includes('貯金が尽きた')), 聞き役の返事: 話.some(e => e.textContent.includes('持たせた')) }; })()", "期待": {"人の話": true, "聞き役の返事": false}}
+]
